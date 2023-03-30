@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Abdul Amaan's Site</title>
+
+    <style>
+      :root {
+        /* --primary: #061A23;
+        --secondry: #061373;
+        --text: #fff;
+        --main: #1f5f5b;
+        --secodary-main: #159947; */
+
+        --primary: #f6bd60;
+        --secondry: #f7ede2;
+        --text: #fff;
+        /* --text: #f5cac3; */
+        --main: #84a59d;
+        --secodary-main: #f28482;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        text-decoration: none;
+        border: none;
+        outline: none;
+      }
+
+      body {
+        background: var(--primary);
+        color: var(--text);
+        overflow-x: hidden;
+      }
+
+      section {
+        /* width: 100vw; */
+        min-height: 100vh;
+        padding: 10rem 2rem 9%;
+      }
+      .btn {
+        background-color: var(--secondry);
+        color: var(--primary);
+        padding: 0.5rem;
+        border-radius: 0.8rem;
+        margin: 0.6rem 0;
+      }
+
+      .header * {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      header {
+        position: fixed;
+        /*  */
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 100;
+        background: var(--primary);
+        /*  */
+        padding: 1.2rem 8%;
+        box-shadow: 0.1rem 0 0.5rem 0 var(--text);
+      }
+
+      .navbar .logo {
+        font-size: 1.2rem;
+        color: var(--text);
+        letter-spacing: 0.1rem;
+        font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+        cursor: default;
+      }
+
+      .navbar ul li a {
+        color: var(--secondry);
+        margin: 0 0.4rem;
+        font-weight: 600;
+        /*  */
+        transition: 0.3s;
+        /*  */
+      }
+
+      ul li a:hover,
+      .header .active {
+        color: var(--text);
+      }
+
+      .navbar .social-icons a {
+        color: var(--text);
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 9rem;
+        margin: 0 0.3rem;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        background-color: var(--secondry);
+        box-shadow: 0 0 8px 0 var(--text);
+      }
+
+      .navbar .social-icons a:hover {
+        box-shadow: none;
+      }
+
+      .text {
+        opacity: 0;
+        transition: 0.2s ease-in;
+        top: 0;
+        font-size: 0;
+        position: absolute;
+      }
+
+      .navbar .social-icons a:hover .text {
+        font-size: 0.8rem;
+        opacity: 1;
+        top: 25px;
+      }
+
+      .navbar .icon {
+        display: none;
+      }
+
+      .navbar .close {
+        display: none;
+        /* max-height: 0.1rem; */
+        padding: 0 0.5rem;
+        position: relative;
+        right: 0;
+        top: -0.8rem;
+      }
+
+      .close .l1,
+      .close .l2 {
+        width: 0.009rem;
+        height: 1.5rem;
+        background-color: red;
+        position: absolute;
+      }
+
+      .close .l2 {
+        transform: rotate(45deg);
+      }
+      .close .l1 {
+        transform: rotate(-45deg);
+      }
+
+      @media (max-width: 600px) {
+        .navbar .icon {
+          display: block;
+        }
+
+        .navbar .social-icons {
+          position: absolute;
+          top: 5rem;
+          right: -100%;
+          /* right: 4vw; */
+          margin: 0 1.3rem;
+          transition: 0.8s ease;
+        }
+
+        .navbar .social-icons a {
+          margin: 0 1rem;
+        }
+
+        .navbar ul {
+          /* display: none; */
+          position: absolute;
+          top: 0;
+          right: -100%;
+          /* right: 0; */
+          /* right: -100%; */
+          display: flex;
+          flex-direction: column;
+          background: #123456;
+          padding: 23vh 4rem;
+          transition: 0.8s ease;
+          /* max-height: 100%; */
+        }
+
+        .navbar ul li a {
+          padding: 2rem;
+        }
+
+        .navbar ul li a:hover,
+        .social-icons a .text {
+          color: var(--primary);
+        }
+      }
+
+      .hero {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .hero-img .img-bg {
+        width: 100%;
+        height: 100%;
+        background-color: #996633;
+        position: absolute;
+        top: 8rem;
+        left: -40rem;
+        border-radius: 100%;
+        transform: rotate(25deg);
+        /* z-index: -; */
+        animation: img-bg--anime 1.5s;
+        overflow: hidden;
+      }
+
+      @keyframes img-bg--anime {
+        from {
+          /* top: -100rem; */
+          left: -100rem;
+        }
+        to {
+          top: 8rem;
+          left: -40rem;
+        }
+      }
+
+      .img-container {
+        position: relative;
+        border-radius: 4rem;
+        overflow: hidden;
+      }
+
+      .hero-img img {
+        max-width: 50vw;
+        transition: 0.5s ease;
+      }
+
+      .hero-img:hover img {
+        transform: scale(1.1);
+      }
+
+      .hero-content {
+        /* max-width: 40%; */
+        display: flex;
+        flex-direction: column;
+      }
+
+      .hero-content h1 {
+        color: var(--secodary-main);
+        font-size: 2.5rem;
+        line-height: 2;
+      }
+
+      .hero-content h3 {
+        font-size: 2rem;
+        line-height: 1.7;
+      }
+
+      .hero-content p {
+        line-height: 1.4;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      /* .hero-content  */
+      .btn {
+        font-size: 1rem;
+        font-weight: 600;
+        word-spacing: 5px;
+        letter-spacing: 5px;
+        transition: 0.2s ease-in-out;
+      }
+      /* .hero-content  */
+      .btn a {
+        color: var(--primary);
+      }
+
+      /* .hero-content  */
+      .btn:hover {
+        letter-spacing: 1px;
+        word-spacing: 1px;
+        box-shadow: 0 0 1rem 0 var(--text);
+      }
+
+      @media only screen and (max-width: 800px), (max-width: 600px) {
+        .hero {
+          flex-direction: column;
+          padding: 8rem 4rem;
+          margin: 0;
+        }
+
+        .hero-content {
+          justify-content: center;
+          align-items: center;
+          margin: 0;
+          z-index: 1;
+        }
+
+        .hero-content h1 {
+          font-size: 2rem;
+        }
+
+        .hero-content p {
+          line-height: 1;
+          width: 450px;
+          text-align: center;
+        }
+
+        .hero-img img {
+          max-width: 70vw;
+        }
+
+        .hero-img .img-bg {
+          top: 8rem;
+          left: -15rem;
+        }
+
+        @keyframes img-bg--anime {
+          from {
+            /* top: -100rem; */
+            left: -100rem;
+          }
+          to {
+            top: 8rem;
+            left: -15rem;
+          }
+        }
+      }
+
+      /* About Section Style Start */
+
+      .about {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        background-color: var(--secondry);
+        color: var(--main);
+        z-index: -1;
+      }
+
+      .about .about-content {
+        line-height: 1.7;
+      }
+
+      /*  */
+      .heading {
+        text-align: center;
+        font-size: 3rem;
+        font-weight: 600;
+      }
+      /*  */
+
+      .about-content h1 {
+        text-align: left;
+        color: var(--secodary-main);
+      }
+
+      .about-content h3 {
+        font-size: 2rem;
+      }
+
+      .about .about-img .img-container img {
+        max-width: 100%;
+      }
+      .about .about-img .img-container {
+        display: flex;
+        /* justify-content: center; */
+        /* align-items: center; */
+      }
+
+      .about .about-img .img-container:hover img {
+        transform: scale(1.1);
+        transition: 0.5s ease;
+      }
+
+      .about .about-content .btn {
+        margin-top: 1rem;
+        width: 14rem;
+        padding: 0.5rem 2.4rem;
+        background-color: var(--main);
+      }
+      .about .about-content .btn a {
+        color: var(--secondry);
+      }
+
+      @media screen and (max-width: 600px) {
+        .about {
+          flex-direction: column;
+        }
+
+        .about .about-content {
+          /* display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center; */
+
+          text-align: center;
+        }
+
+        .about .heading,
+        h3,
+        p {
+          text-align: center;
+        }
+      }
+
+      /* Colleges Section CSS Style Start */
+
+      .colleges {
+        padding: 4rem 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .colleges .colleges-container {
+        display: grid;
+        grid-template-columns: repeat(3, calc(100vw - 78vw));
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .colleges-box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: var(--main);
+        padding: 1.5rem 1rem;
+        border-radius: 2rem;
+        text-align: center;
+        align-items: center;
+        border: 0.2rem solid var(--primary);
+        transition: 0.5s ease;
+      }
+      .colleges-box:hover {
+        border-color: var(--secondry);
+        transform: scale(1.02);
+      }
+      .colleges-box img {
+        width: 50%;
+        border-radius: 1rem;
+        margin-bottom: 0.6rem;
+      }
+      .colleges-box {
+        line-height: 1.2;
+      }
+      .colleges-box {
+        line-height: 1.2;
+      }
+      .colleges-box .btn {
+        color: var(--main);
+      }
+
+      @media screen and (max-width: 600px) {
+        .colleges .colleges-container {
+          grid-template-columns: repeat(1, calc(100vw - 50vw));
+          flex-wrap: wrap;
+          margin: 1rem;
+        }
+      }
+
+      /* Contacts Styling Start */
+
+      .contact {
+        background: var(--secondry);
+        color: var(--secodary-main);
+        padding: 4rem 2rem;
+      }
+
+      form {
+        max-width: 70rem;
+        margin: 4rem auto;
+        text-align: center;
+      }
+
+      form .input-box {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+
+      form .input-box input,
+      .contact form textarea {
+        width: 100%;
+        padding: 1rem;
+        color: var(--text);
+        background: var(--main);
+        border-radius: 0.8rem;
+        margin: 0.7rem 0;
+      }
+      form .input-box input {
+        width: 49%;
+      }
+
+      
+      
+      form .btn {
+        background: var(--main);
+        padding: 0.8rem 5rem;
+        color: var(--secondry);
+        border-radius: 10rem;
+        width: 20rem;
+      }
+
+      @media (max-width: 700px) {
+        form .input-box input {
+          width: 100%;
+        }
+      }
+
+      footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.4rem 2rem;
+        color: var(--text);
+        font-size: 0.7rem;
+      }
+      footer .footer-text span {
+        color: var(--main);
+        font-weight: 800;
+      }
+
+      .icon {
+        width: 1.2rem;
+        height: 1.2rem;
+        background-color: var(--main);
+        border-radius: 1rem;
+        /* display: grid;
+        place-items: center;
+        text-align: center; */
+        position: relative;
+        top: 0;
+        right: 0;
+        animation: bubbleJump 3s infinite;
+        transition: 3s ease;
+        cursor: pointer;
+      }
+      .icon a {
+        font-size: 1.2rem;
+        color: navy;
+      }
+
+      @keyframes bubbleJump {
+        0% {
+          top: 0;
+        }
+
+        20% {
+          top: 5px;
+        }
+
+        40% {
+          top: 0;
+        }
+
+        60% {
+          top: 2.5px;
+        }
+
+        80% {
+          top: 5;
+        }
+        100% {
+          top: 0;
+        }
+      }
+    </style>
+  </head>
+  <body class="body">
+    <header class="header">
+      <nav class="navbar">
+        <div class="logo">Ab Amaan</div>
+
+        <ul class="nav-links" id="nav-link">
+          <li><a href="#home" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li>
+            <a href="#colleges">Colleges</a>
+          </li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <div class="social-icons" id="social-icons">
+          <a href="#facebook"><span class="text">Facebook</span></a>
+          <a href="#linkDin"><span class="text">linkedIn</span></a>
+          <a href="#Instagram"><span class="text">Instagram</span></a>
+          <a href="#GitHub"><span class="text">GitHub</span></a>
+        </div>
+
+        <div class="icon" id="hamburger"></div>
+
+        <div class="close" id="close">
+          <div class="l1"></div>
+          <div class="l2"></div>
+        </div>
+      </nav>
+    </header>
+
+    <section class="hero" id="home">
+      <div class="hero-img">
+        <div class="img-bg"></div>
+        <div class="img-container">
+          <img src="./assets/images/element (11).jpg" alt="" />
+        </div>
+      </div>
+      <div class="hero-content">
+        <h1>I'm Abdul Amaan</h1>
+        <h3>Learning Machine Learning</h3>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro,
+          praesentium quis vel minus atque in saepe odio nobis delectus officia
+          earum, adipisci facere sed numquam totam at. Nesciunt ab quam omnis
+          facilis ipsum officia. Quasi repellat necessitatibus possimus modi
+          error cumque temporibus fugiat consectetur reprehenderit.
+        </p>
+        <button class="btn" id="resume">
+          <a target="_blank" href="file:///D:/resume/Resume-2.pdf"
+            >Download My Resume</a
+          >
+        </button>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="about-content">
+        <h1 class="heading">About Me</h1>
+        <h3>Machine Learning</h3>
+        <p>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta hic
+          earum illo. Quas, saepe magni libero iure fugiat ex iusto aliquam
+          asperiores soluta facilis ab officia nemo nulla deserunt voluptatum?
+          Voluptates, voluptatibus provident. Quos praesentium dignissimos sit
+          dolor autem laudantium. Laborum ullam autem laboriosam animi quae
+          officia fugit accusantium minima non cumque. Ducimus, incidunt
+          aliquid?
+        </p>
+        <button class="btn"><a href="#">Read More</a></button>
+      </div>
+
+      <div class="about-img">
+        <div class="img-container">
+          <img src="assets/images/element (7).jpg" alt="" />
+        </div>
+      </div>
+    </section>
+
+    <section class="colleges" id="colleges">
+      <h1 class="heading">Our Colleges</h1>
+
+      <div class="colleges-container">
+        <div class="colleges-box">
+          <img src="./assets/images/element (5).jpg" alt="" />
+          <div class="colleges-content">
+            <h2>Shoeb</h2>
+            <h3>Profession</h3>
+            <p>Lorem ipsum dolor sit amet.</p>
+            <button class="btn">Read More</button>
+          </div>
+        </div>
+
+        <div class="colleges-box">
+          <img src="./assets/images/element (4).jpg" alt="" />
+          <div class="colleges-content">
+            <h2>Maaz</h2>
+            <h3>Profession</h3>
+            <p>Lorem ipsum dolor sit amet.</p>
+            <button class="btn">Read More</button>
+          </div>
+        </div>
+
+        <div class="colleges-box">
+          <img src="./assets/images/element (13).jpg" alt="" />
+          <div class="colleges-content">
+            <h2>Kamran</h2>
+            <h3>Profession</h3>
+            <p>Lorem ipsum dolor sit amet.</p>
+            <button class="btn">Read More</button>
+          </div>
+        </div>
+
+        <div class="colleges-box">
+          <img src="./assets/images/element (10).jpg" alt="" />
+          <div class="colleges-content">
+            <h2>Aftab</h2>
+            <h3>Profession</h3>
+            <p>Lorem ipsum dolor sit amet.</p>
+            <button class="btn">Read More</button>
+          </div>
+        </div>
+
+        <div class="colleges-box">
+          <img src="./assets/images/element (14).jpg" alt="" />
+          <div class="colleges-content">
+            <h2>Aftab</h2>
+            <h3>Profession</h3>
+            <p>Lorem ipsum dolor sit amet.</p>
+            <button class="btn">Read More</button>
+          </div>
+        </div>
+
+        <div class="colleges-box">
+          <img src="./assets/images/element (3).jpg" alt="" />
+          <div class="colleges-content">
+            <h2>Finding...</h2>
+            <h3>Profession</h3>
+            <p>Lorem ipsum dolor sit amet.</p>
+            <button class="btn">Read More</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="heading">To Contact</div>
+      <form action="#">
+        <div class="input-box">
+          <input type="text" placeholder="Enter First Name " />
+          <input type="email" placeholder="Enter Email Address " />
+        </div>
+
+        <div class="input-box">
+          <input type="number" placeholder="Mobile Number" />
+          <input type="text" placeholder="Email Subject" />
+        </div>
+
+        <textarea cols="30" rows="10" placeholder="Your Message"></textarea>
+        <input type="submit" value="send message" class="btn" />
+      </form>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-text">
+        <p>
+          copyriyht &copy; 2023 by {[( <span>M.A.A.K.S</span> )]} | All Rights
+          Reserved
+        </p>
+      </div>
+      <div class="icon"><a href="#home">Top</a></div>
+    </footer>
+
+    <script>
+      let hamburger = document.getElementById("hamburger");
+      let close = document.getElementById("close");
+      let navLink = document.getElementById("nav-link");
+      let socialIcons = document.getElementById("social-icons");
+
+      hamburger.addEventListener("click", () => {
+        console.log("hamburger");
+        navLink.style.right = "0";
+        socialIcons.style.right = "0";
+        close.style.display = "block";
+        hamburger.style.display = "none";
+      });
+
+      close.addEventListener("click", () => {
+        console.log("close == none ");
+        navLink.style.right = "-100%";
+        socialIcons.style.right = "-100%";
+        hamburger.style.display = "block";
+        close.style.display = "none";
+      });
+    </script>
+  </body>
+</html>
